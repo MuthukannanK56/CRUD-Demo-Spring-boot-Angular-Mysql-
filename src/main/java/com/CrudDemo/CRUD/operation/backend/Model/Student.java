@@ -12,7 +12,7 @@ public class Student {
     @Column(name ="name")
     private String name;
 
-    @Column(name ="mobilenuber")
+    @Column(name ="mobileNumber")
     private String mobilenumber;
 
     @Column(name = "address")
