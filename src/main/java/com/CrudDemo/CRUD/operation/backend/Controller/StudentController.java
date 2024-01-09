@@ -60,6 +60,18 @@ public class StudentController {
     }
 
 
+    //Delete student details by id
+    @DeleteMapping("/deletestudent/{id}")
+    public ResponseEntity<Map<String,Boolean>> deleteStudent(@PathVariable Long id){
+        Student student = studentRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("Employee not found with this id"+id));
+        studentRepository.delete(student);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Delete",Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+
+
 
 
 }
