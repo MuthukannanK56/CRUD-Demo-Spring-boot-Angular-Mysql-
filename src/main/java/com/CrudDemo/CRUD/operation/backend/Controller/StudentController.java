@@ -30,9 +30,16 @@ public class StudentController {
         return studentRepository.save(student);
     }
 
-    //Get Student By ID
+    //Get Student By ID via path variable
     @GetMapping("/student/{id}")
     public ResponseEntity<Student> getStudentbyid(@PathVariable Long id){
+        Student student= studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with this id"+id));
+        return ResponseEntity.ok(student);
+    }
+    //Get Student By ID via request param
+    @GetMapping("/student")
+    public ResponseEntity<Student> getStudentbyid(@RequestParam("id") Long id){
         Student student= studentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found with this id"+id));
         return ResponseEntity.ok(student);
